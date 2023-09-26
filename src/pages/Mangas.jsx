@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useStore, useDispatch } from "react-redux";
 import { saveAllMangas, filtro } from "../redux/actions/mangasAction.js";
-
+import apiUrl from "../../apiUrl";
 export default function Mangas() {
   // const [mangas, setMangas] = useState([])
   const [input, setInput] = useState("");
@@ -41,7 +41,7 @@ export default function Mangas() {
     const {
       data: { mangas, count },
     } = await axios.get(
-      `http://localhost:8080/mangas?page=1&title=${text}&category=${checks}`
+      `${apiUrl}/mangas?page=1&title=${text}&category=${checks}`
     );
     dispatch(saveAllMangas(mangas));
     setCantidadT(count);
