@@ -9,7 +9,6 @@ const Carrousel = () => {
   let [categories, setCategories] = useState([]);
 
   console.log(categories);
-  let url = "https://back-prueba-9qy6.onrender.com/categories";
   let titulos = ["My Hero Academy", "Naruto", "Dragon Ball Z"];
 
   let prev = () => {
@@ -23,7 +22,7 @@ const Carrousel = () => {
     const {
       data: { mangas, count },
     } = await axios.get(
-      `https://back-prueba-9qy6.onrender.com/mangas?page=1&title=${text}&category=${checks}`
+      `${apiUrl}/mangas?page=1&title=${text}&category=${checks}`
     );
     dispatch(saveAllMangas(mangas));
     setCantidadT(count);
@@ -31,7 +30,7 @@ const Carrousel = () => {
   }
 
   async function getData() {
-    const data = await axios.get(url);
+    const data = await axios.get(`${apiUrl}/categories`);
     setCategories(data.data);
   }
 

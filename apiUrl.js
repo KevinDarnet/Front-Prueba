@@ -1,7 +1,3 @@
-let apiUrl = "apiUrl";
-
-if (process.env.NODE_ENV === "production") {
-  apiUrl = import.meta.env.VITE_URL;
-}
+let apiUrl = "https://back-prueba-hrh5.onrender.com";
 
 export default apiUrl;
