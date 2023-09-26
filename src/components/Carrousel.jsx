@@ -3,13 +3,14 @@ import midoriya_cover from "../../public/images/midoriya_cover.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import apiUrl from "../../apiUrl";
 
 const Carrousel = () => {
   let [counter, setCounter] = useState(0);
   let [categories, setCategories] = useState([]);
 
   console.log(categories);
-  let url = "https://minga-back-vyqy.onrender.com/categories";
+  let url = `${apiUrl}/categories`;
   let titulos = ["My Hero Academy", "Naruto", "Dragon Ball Z"];
 
   let prev = () => {
