@@ -4,13 +4,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import apiUrl from "../../apiUrl";
-
 const Carrousel = () => {
   let [counter, setCounter] = useState(0);
   let [categories, setCategories] = useState([]);
 
   console.log(categories);
-  let url = `${apiUrl}/categories`;
+  let url = "https://back-prueba-9qy6.onrender.com/categories";
   let titulos = ["My Hero Academy", "Naruto", "Dragon Ball Z"];
 
   let prev = () => {
@@ -20,10 +19,20 @@ const Carrousel = () => {
     counter !== titulos.length - 1 ? setCounter(counter + 1) : setCounter(0);
   };
 
-  function getData() {
-    axios(url)
-      .then((res) => setCategories(res.data.categories))
-      .catch((err) => console.log(err.message));
+  async function filtroMangas() {
+    const {
+      data: { mangas, count },
+    } = await axios.get(
+      `https://back-prueba-9qy6.onrender.com/mangas?page=1&title=${text}&category=${checks}`
+    );
+    dispatch(saveAllMangas(mangas));
+    setCantidadT(count);
+    console.log(data);
+  }
+
+  async function getData() {
+    const data = await axios.get(url);
+    setCategories(data.data);
   }
 
   useEffect(() => {

@@ -4,7 +4,6 @@ import Card from "../components/Card";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useStore, useDispatch } from "react-redux";
 import { saveAllMangas, filtro } from "../redux/actions/mangasAction.js";
-import apiUrl from "../../apiUrl";
 export default function Mangas() {
   // const [mangas, setMangas] = useState([])
   const [input, setInput] = useState("");
@@ -41,7 +40,7 @@ export default function Mangas() {
     const {
       data: { mangas, count },
     } = await axios.get(
-      `${apiUrl}/mangas?page=1&title=${text}&category=${checks}`
+      `https://back-prueba-9qy6.onrender.com/mangas?page=1&title=${text}&category=${checks}`
     );
     dispatch(saveAllMangas(mangas));
     setCantidadT(count);
@@ -51,7 +50,9 @@ export default function Mangas() {
     console.log("Hice la peticion");
     const {
       data: { mangas, count },
-    } = await axios.get(`http://localhost:8080/mangas?page=${page}`);
+    } = await axios.get(
+      ` https://back-prueba-9qy6.onrender.com/mangas?page=${page}`
+    );
     // console.log("cantidad de mangas", count);
     dispatch(saveAllMangas(mangas));
     // setMangas(mangas)
